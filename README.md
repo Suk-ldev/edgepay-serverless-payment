@@ -19,6 +19,8 @@
 4. 向导会创建 D1、写入 Worker Secrets、上传本仓库锁定版本并切换部署。
 5. 部署完成后进入 `/admin` 配置商户、支付通道和插件。
 
+后台“使用文档”已经逐项列出 15 个付费插件的凭据来源、字段填写、Webhook、Docker Watcher 和排错步骤。
+
 License 只显示一次，请立即离线保存。域名已绑定但 License 丢失时请通过 `https://pay.imsuk.eu.org/contact` 联系处理；换域名使用 License 站的“自助换绑”。
 
 ## 手动部署
