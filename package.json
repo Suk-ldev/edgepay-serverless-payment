@@ -1,0 +1,9 @@
+{
+  "name": "edgepay-serverless-payment-commercial",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "verify": "node scripts/verify-release.mjs && node --check src/index.js"
+  }
+}

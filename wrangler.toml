@@ -1,0 +1,38 @@
+name = "edgepay-serverless-payment"
+main = "src/index.js"
+compatibility_date = "2026-07-27"
+workers_dev = true
+# 自定义域名只在 Cloudflare 控制台维护。发布脚本仅上传并切换 Worker
+# 版本，不调用 triggers deploy，也不会创建、修改或删除域名路由。
+
+# 只有一个持久化绑定。订单、收款事件、通知重试都写入 D1；不要把支付状态放入 KV。
+# 通过 "Deploy to Cloudflare" 按钮部署时会自动创建同名 D1 并回填 database_id；
+# 手动部署时先执行 `wrangler d1 create <name>`，再把返回的 database_id 填进来。
+[[d1_databases]]
+binding = "DB"
+database_name = "edgepay-serverless-payment"
+database_id = ""
+
+# 微信支付 V2 官方退款需要商户 API 双向证书，一键部署无法自动上传证书文件，
+# 因此模板里默认不包含这段绑定。仅当你需要微信官方退款时，部署完成后执行
+# `wrangler mtls-certificate upload --cert apiclient_cert.pem --key apiclient_key.pem`，
+# 拿到 certificate_id 后取消下面的注释并重新部署（`npm run deploy`）。
+# [[mtls_certificates]]
+# binding = "WECHAT_MTLS"
+# certificate_id = "<your-mtls-certificate-id>"
+
+# 静态页面由 src/bundled-assets.js 随 Worker 模块上传，不创建 KV 或 Static Assets 资源。
+
+# 不增加队列服务。首次通知在支付回调内用 waitUntil 发送，失败任务由同一个 Worker 每分钟重试。
+[triggers]
+crons = ["* * * * *"]
+
+[vars]
+# 部署完成后替换成你自己的公开访问域名（自定义域名或 workers.dev 均可），然后重新部署一次。
+PUBLIC_BASE_URL = "https://pay.example.com"
+# 单租户仍按 ePay V1 的 pid/key 认证；PID 可公开，KEY 必须通过 Worker Secret 设置。
+EPAY_PID = "1000"
+# 管理登录账号；密码仍只存在 Worker Secret `ADMIN_TOKEN`。
+ADMIN_USERNAME = "admin"
+# 授权服务地址固定在 src/license-client.js，不允许通过普通环境变量覆盖。
+# 永久 License 使用 Worker Secret：npx wrangler secret put EDGEPAY_LICENSE
