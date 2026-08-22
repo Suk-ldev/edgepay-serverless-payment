@@ -1,12 +1,12 @@
 {
   "name": "edgepay-commercial-worker",
   "edition": "public-commercial-encrypted",
-  "build_date": "2026-08-21",
+  "build_date": "2026-08-22",
   "entry": "src/index.js",
-  "sha256": "755a2795b2afcd33c367787f4a94783b3cf0ca585077c8f0ae9ac7af360871fd",
-  "bytes": 922010,
+  "sha256": "e9c5e22b157611523fe231bd685afbacb6feb2b0e4efc4929c68d9b1490b210c",
+  "bytes": 926480,
   "source_maps": false,
   "license_protocol": "ed25519-device-pop-v1",
   "config_encryption": "aes-gcm",
-  "version": "1.0.1"
+  "version": "1.0.2"
 }

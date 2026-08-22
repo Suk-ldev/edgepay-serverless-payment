@@ -34,5 +34,7 @@ PUBLIC_BASE_URL = "https://pay.example.com"
 EPAY_PID = "1000"
 # 管理登录账号；密码仍只存在 Worker Secret `ADMIN_TOKEN`。
 ADMIN_USERNAME = "admin"
+# 用于管理后台打开升级向导时自动填写 Worker 名称；手动改名部署时一并修改。
+EDGEPAY_PROJECT_NAME = "edgepay-serverless-payment"
 # 授权服务地址固定在 src/license-client.js，不允许通过普通环境变量覆盖。
 # 永久 License 使用 Worker Secret：npx wrangler secret put EDGEPAY_LICENSE
