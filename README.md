@@ -48,6 +48,8 @@ wrangler deploy
 
 1.1.0 起不再预置支付通道，也不附带任何示例收款二维码。管理员需要在 `/admin/channels` 按实际业务新增通道，并在码牌类插件配置中上传自己的二维码。
 
+1.1.1 起，Docker 快照会自动排除已经由 Worker 原生轮询的插件，避免 Worker 与 Watcher 重复查单。拉卡拉直连和星驿付直连仅在没有配置 Worker 可用的 Token/Cookie 时回退 Docker。
+
 付呗、收钱吧、支付宝账单、海科码钱、天阙 Pretran、旺铺管家和 USDT 已由 Worker 直接查询，不需要 Docker。拉卡拉直连、星驿付直连填入 Access Token 或 Cookie 后也由 Worker 查询。富友、拉卡拉普通版、星驿付普通版、天阙会生活、易宝老板管账和易生收款啦仍依赖浏览器登录，使用 Docker Watcher。
 
 ## 完整性校验

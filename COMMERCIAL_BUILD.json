@@ -3,10 +3,10 @@
   "edition": "public-commercial-encrypted",
   "build_date": "2026-08-22",
   "entry": "src/index.js",
-  "sha256": "2d56bff850e1ec853b523e720ab24381770e65affea1af465dd0da3bbf0efd8b",
-  "bytes": 703022,
+  "sha256": "a4b77b4c480855061b843a65377e042901fc8d44b1a1060587c7f44e7dd5f867",
+  "bytes": 703085,
   "source_maps": false,
   "license_protocol": "ed25519-device-pop-v1",
   "config_encryption": "aes-gcm",
-  "version": "1.1.0"
+  "version": "1.1.1"
 }
